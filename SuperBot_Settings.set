@@ -1,0 +1,40 @@
+; SuperBot EA - Recommended Settings Template
+; Save this file as SuperBot_Settings.set in your MT5/Profiles/Templates folder
+; Load via: Right-click EA → Load Settings
+
+; === Risk Management ===
+InpRiskPercent=2.0
+InpMaxDrawdown=30
+InpMaxConsecutiveLosses=3
+
+; === Trading Parameters ===
+InpTakeProfit=15
+InpStopLoss=10
+InpUseTrailingStop=true
+InpTrailingDistance=5
+
+; === Technical Indicators ===
+InpEMAFast=8
+InpEMASlow=21
+InpRSIPeriod=14
+InpRSIOverbought=70
+InpRSIOversold=30
+InpBBPeriod=20
+InpBBDeviation=2.0
+
+; === Growth Stages ===
+InpStage1Target=20.0
+InpStage2Target=100.0
+InpStage3Target=200.0
+
+; === UI Settings ===
+InpShowPanel=true
+InpPanelX=20
+InpPanelY=20
+
+; === Advanced Settings ===
+; (These would be in an extended version)
+; NewsFilter=false
+; MaxSpread=3
+; TradingHours=24/7
+; EmailAlerts=false
