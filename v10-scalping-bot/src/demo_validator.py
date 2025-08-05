@@ -157,6 +157,18 @@ class DemoTradingValidator:
         except Exception as e:
             self.logger.error(f"Error updating demo progress: {e}")
     
+    def should_graduate_to_live_trading(self) -> Dict[str, Any]:
+        """Determine if bot is ready for live trading - alias for check_graduation_criteria"""
+        # Get current performance summary from adaptive backtester
+        try:
+            from src.adaptive_backtester import get_adaptive_backtester
+            adaptive_backtester = get_adaptive_backtester()
+            performance_summary = adaptive_backtester.get_performance_summary()
+            return self.check_graduation_criteria(performance_summary)
+        except Exception as e:
+            self.logger.error(f"Error in graduation check: {e}")
+            return {"ready": False, "error": str(e)}
+    
     def check_graduation_criteria(self, performance_summary: Dict[str, Any]) -> Dict[str, Any]:
         """Check if bot meets graduation criteria for live trading"""
         try:
