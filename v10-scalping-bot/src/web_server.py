@@ -136,8 +136,8 @@ class BotWebServer:
                 return {"status": "no_data", "message": "Trade data not available"}
             
             try:
-                active_trades = [trade.to_dict() for trade in self.bot.trade_executor.get_active_trades()]
-                recent_trades = [trade.to_dict() for trade in self.bot.trade_executor.get_recent_trades(20)]
+                active_trades = [trade.to_dict() for trade in self.bot.trade_executor.get_active_trades() or []]
+                recent_trades = [trade.to_dict() for trade in self.bot.trade_executor.get_recent_trades(20) or []]
                 
                 return {
                     "status": "success",
@@ -173,8 +173,8 @@ class BotWebServer:
                 return {"status": "no_data", "message": "Signal data not available"}
             
             try:
-                recent_signals = [signal.to_dict() for signal in self.bot.signal_generator.get_recent_signals(10)]
-                signal_stats = self.bot.signal_generator.get_signal_stats()
+                recent_signals = [signal.to_dict() for signal in self.bot.signal_generator.get_recent_signals(10) or []]
+                signal_stats = self.bot.signal_generator.get_signal_stats() or {}
                 
                 return {
                     "status": "success",

@@ -32,6 +32,17 @@ class MarketStats:
     volatility: float
     tick_count: int
     last_update: float
+    
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for JSON serialization"""
+        return {
+            'current_price': self.current_price,
+            'price_change': self.price_change,
+            'price_change_pct': self.price_change_pct,
+            'volatility': self.volatility,
+            'tick_count': self.tick_count,
+            'last_update': self.last_update
+        }
 
 class RSICalculator:
     """Efficient RSI calculation with rolling window"""
