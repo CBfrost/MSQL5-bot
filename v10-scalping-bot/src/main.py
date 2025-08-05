@@ -20,6 +20,8 @@ from src.signal_generator import ScalpingSignalGenerator
 from src.risk_manager import RiskManager
 from src.trade_executor import TradeExecutor
 from src.performance_tracker import PerformanceTracker
+from src.adaptive_backtester import get_adaptive_backtester, MarketCondition
+from src.demo_validator import get_demo_validator
 
 class V10ScalpingBot:
     """Main V10 Scalping Bot Application"""
@@ -54,6 +56,11 @@ class V10ScalpingBot:
         self.web_server = None
         self.web_server_thread = None
         
+        # Adaptive learning system
+        self.adaptive_backtester = get_adaptive_backtester()
+        self.demo_validator = get_demo_validator()
+        self.demo_mode = True  # Start in demo mode for safety
+        
         # Application state
         self.running = False
         self.shutdown_requested = False
@@ -73,6 +80,22 @@ class V10ScalpingBot:
         """Initialize all components"""
         try:
             self.logger.info("Initializing bot components...")
+            
+            # Validate demo environment first
+            demo_validation = self.demo_validator.validate_demo_environment()
+            if not demo_validation["is_safe"]:
+                self.logger.error("UNSAFE ENVIRONMENT DETECTED!")
+                for error in demo_validation["errors"]:
+                    self.logger.error(f"❌ {error}")
+                for warning in demo_validation["warnings"]:
+                    self.logger.warning(f"⚠️ {warning}")
+                return False
+            
+            if demo_validation["warnings"]:
+                for warning in demo_validation["warnings"]:
+                    self.logger.warning(f"⚠️ {warning}")
+            
+            self.logger.info("✅ Demo environment validation passed")
             
             # Initialize WebSocket client
             self.websocket_client = DerivWebSocketClient(self.config.api)
@@ -150,30 +173,61 @@ class V10ScalpingBot:
         try:
             # Process tick data
             if await self.market_data.process_tick(tick_data):
+                # Add market condition to adaptive backtester
+                market_summary = self.market_data.get_data_summary()
+                self.adaptive_backtester.add_market_condition(
+                    rsi=market_summary.get('rsi', 50.0),
+                    volatility=market_summary.get('volatility', 0.0),
+                    price=market_summary.get('current_price', 0.0),
+                    price_change=market_summary.get('price_change_pct', 0.0),
+                    consecutive_moves=market_summary.get('consecutive_moves', 0)
+                )
+                
                 # Generate trading signal
                 signal = self.signal_generator.generate_signal(self.market_data)
                 
                 if signal:
-                    # Get current balance
-                    current_balance = await self.websocket_client.get_balance()
-                    if current_balance is None:
-                        self.logger.warning("Could not get current balance for trade execution")
-                        return
+                    # Get strategy recommendation from adaptive backtester
+                    current_conditions = {
+                        'market_regime': self.adaptive_backtester.detect_market_regime(
+                            market_summary.get('rsi', 50.0),
+                            market_summary.get('volatility', 0.0),
+                            market_summary.get('price_change_pct', 0.0),
+                            market_summary.get('consecutive_moves', 0)
+                        ),
+                        'rsi': market_summary.get('rsi', 50.0),
+                        'volatility': market_summary.get('volatility', 0.0)
+                    }
                     
-                    # Execute trade
-                    execution_report = await self.trade_executor.execute_trade(signal, current_balance)
-                    
-                    # Log execution result
-                    self.logger.info(
-                        f"Trade execution: {execution_report.result.value} "
-                        f"(Signal: {signal.signal_type.value}, "
-                        f"Confidence: {signal.confidence:.3f})"
+                    recommendation = self.adaptive_backtester.get_strategy_recommendation(
+                        signal.strategy, current_conditions
                     )
                     
-                    # If trade was executed, track it
-                    if execution_report.result.value == "SUCCESS" and execution_report.trade:
-                        # The trade will be tracked when it completes
-                        pass
+                    # Only proceed if recommendation is positive
+                    if recommendation['action'] == 'proceed' and recommendation['confidence'] > 0.4:
+                        # Get current balance
+                        current_balance = await self.websocket_client.get_balance()
+                        if current_balance is None:
+                            self.logger.warning("Could not get current balance for trade execution")
+                            return
+                        
+                        # Execute trade
+                        execution_report = await self.trade_executor.execute_trade(signal, current_balance)
+                        
+                        # Log execution result with recommendation info
+                        self.logger.info(
+                            f"Trade execution: {execution_report.result.value} "
+                            f"(Signal: {signal.signal_type.value}, "
+                            f"Confidence: {signal.confidence:.3f}, "
+                            f"AI Recommendation: {recommendation['confidence']:.2f})"
+                        )
+                        
+                        # If trade was executed, it will be tracked when it completes
+                    else:
+                        self.logger.debug(
+                            f"Trade skipped due to AI recommendation: {recommendation['reason']} "
+                            f"(confidence: {recommendation['confidence']:.2f})"
+                        )
                 
         except Exception as e:
             self.logger.error(f"Error handling tick data: {e}")
@@ -213,12 +267,28 @@ class V10ScalpingBot:
             # Get completed trades from executor
             recent_trades = self.trade_executor.get_recent_trades(50)  # Last 50 trades
             
-            # Add new completed trades to performance tracker
+            # Add new completed trades to performance tracker and adaptive backtester
             for trade in recent_trades:
                 if trade.status.value in ['WON', 'LOST']:
                     # Check if we've already tracked this trade
                     if not any(t.trade_id == trade.trade_id for t in self.performance_tracker.trades):
                         self.performance_tracker.add_trade(trade)
+                        
+                        # Add to adaptive backtester for learning
+                        if hasattr(trade, 'signal') and trade.signal:
+                            # Get market condition at time of trade
+                            market_condition = MarketCondition(
+                                timestamp=trade.exit_time or get_current_timestamp(),
+                                rsi=trade.signal.rsi_value,
+                                volatility=0.2,  # Default volatility
+                                price=trade.entry_price,
+                                price_change=0.0,  # Will be calculated from market data
+                                consecutive_moves=0,  # Will be calculated from market data
+                                market_regime="ranging"  # Will be detected properly
+                            )
+                            
+                            # Let the adaptive backtester learn from this trade
+                            self.adaptive_backtester.add_trade_result(trade, trade.signal, market_condition)
                         
         except Exception as e:
             self.logger.error(f"Error updating performance tracking: {e}")
@@ -247,6 +317,10 @@ class V10ScalpingBot:
                 # Get signal stats
                 signal_stats = self.signal_generator.get_signal_stats()
                 
+                # Get adaptive learning summary
+                adaptive_summary = self.adaptive_backtester.get_performance_summary()
+                graduation_status = self.demo_validator.check_graduation_criteria(performance_summary)
+                
                 # Log comprehensive status
                 self.logger.info("=== STATUS REPORT ===")
                 self.logger.info(f"Runtime: {(current_time - self.startup_time) / 3600:.1f} hours")
@@ -258,6 +332,20 @@ class V10ScalpingBot:
                 self.logger.info(f"Signals Generated: {signal_stats['total_signals']}")
                 self.logger.info(f"Current RSI: {market_summary['rsi']:.2f}")
                 self.logger.info(f"Risk Status: {risk_summary['trading_status']}")
+                
+                # Adaptive learning status
+                learning_progress = adaptive_summary.get('learning_progress', {})
+                self.logger.info(f"🧠 Learning: {learning_progress.get('confidence_level', 'building').title()} "
+                               f"({learning_progress.get('trades_analyzed', 0)} trades analyzed)")
+                
+                # Best strategy info
+                best_strategy = adaptive_summary.get('best_strategy')
+                if best_strategy:
+                    self.logger.info(f"🏆 Best Strategy: {best_strategy['name']} ({best_strategy['win_rate']:.1f}% win rate)")
+                
+                # Graduation status
+                self.logger.info(f"🎓 Live Trading Readiness: {graduation_status['overall_score']:.1%}")
+                
                 if self.enable_web_server:
                     self.logger.info("Web Dashboard: http://127.0.0.1:8000")
                 self.logger.info("===================")
