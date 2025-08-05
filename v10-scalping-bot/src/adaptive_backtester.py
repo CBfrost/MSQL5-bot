@@ -269,7 +269,12 @@ class AdaptiveBacktester:
             
             # Check if optimization is needed
             if self.should_optimize_strategy(strategy_name):
-                asyncio.run(self.optimize_strategy(strategy_name)) # Run optimize_strategy in a thread
+                # Schedule optimization for later to avoid blocking
+                import threading
+                threading.Thread(
+                    target=lambda: asyncio.run(self.optimize_strategy(strategy_name)),
+                    daemon=True
+                ).start()
             
             # Save data periodically
             if len(self.trade_history) % 25 == 0:  # Every 25 trades
