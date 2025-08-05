@@ -1,0 +1,12 @@
+{
+  "demo_start_date": 1754423793.463746,
+  "demo_end_date": null,
+  "total_demo_trades": 0,
+  "demo_balance_start": 0.0,
+  "demo_balance_current": 0.0,
+  "daily_loss_breaches": 0,
+  "consecutive_losses_max": 0,
+  "validation_passed": false,
+  "graduation_date": null,
+  "validation_notes": []
+}

@@ -296,7 +296,7 @@ class ScalpingSignalGenerator:
             )
             
         elif rsi >= self.rsi_overbought:  # RSI >= 70 (standard)
-            confidence = min((rsi - self.rsi_overbought) / 30, 0.7)  # Scale 0-0.7
+            confidence = min((rsi - self.rsi_overbought) / 10, 0.8)  # Scale 0-0.8, more sensitive
             strength = SignalStrength.MODERATE
             duration = 3 + int(confidence * 3)  # 3-6 ticks
             
@@ -316,7 +316,7 @@ class ScalpingSignalGenerator:
             )
             
         elif rsi <= self.rsi_oversold:  # RSI <= 30 (standard)
-            confidence = min((self.rsi_oversold - rsi) / 30, 0.7)  # Scale 0-0.7
+            confidence = min((self.rsi_oversold - rsi) / 10, 0.8)  # Scale 0-0.8, more sensitive
             strength = SignalStrength.MODERATE
             duration = 3 + int(confidence * 3)  # 3-6 ticks
             

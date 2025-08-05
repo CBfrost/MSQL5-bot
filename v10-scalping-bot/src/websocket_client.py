@@ -167,7 +167,7 @@ class DerivWebSocketClient:
         if msg_type not in self.message_handlers and 'req_id' not in data:
             self.logger.debug(f"Unhandled message type: {msg_type}")
     
-    async def send_request(self, request: Dict[str, Any], timeout: float = 10.0) -> Optional[Dict[str, Any]]:
+    async def send_request(self, request: Dict[str, Any], timeout: float = 15.0) -> Optional[Dict[str, Any]]:
         """Send request and wait for response"""
         if not self.state.connected or not self.websocket:
             self.logger.error("Cannot send request: not connected")

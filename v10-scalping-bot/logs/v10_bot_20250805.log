@@ -1,0 +1,278 @@
+2025-08-05 19:56:33,465 - V10ScalpingBot - INFO - V10 Scalping Bot initialized
+2025-08-05 19:56:33,465 - V10ScalpingBot - INFO - Starting V10 Scalping Bot...
+2025-08-05 19:56:33,465 - V10ScalpingBot - INFO - Initializing bot components...
+2025-08-05 19:56:33,465 - V10ScalpingBot - INFO - ✅ Demo environment validation passed
+2025-08-05 19:56:34,392 - V10ScalpingBot - INFO - Web dashboard started at http://127.0.0.1:8000
+2025-08-05 19:56:34,392 - V10ScalpingBot - INFO - Bot initialized successfully with balance: $9993.33
+2025-08-05 19:56:34,392 - V10ScalpingBot - INFO - Starting trading loop...
+2025-08-05 19:56:34,469 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 19:56:34,469 - V10ScalpingBot - INFO - Runtime: 0.0 hours
+2025-08-05 19:56:34,470 - V10ScalpingBot - INFO - Balance: $9993.33 (ROI: 0.00%)
+2025-08-05 19:56:34,470 - V10ScalpingBot - INFO - Total Trades: 0
+2025-08-05 19:56:34,470 - V10ScalpingBot - INFO - Win Rate: 0.0%
+2025-08-05 19:56:34,470 - V10ScalpingBot - INFO - Total P&L: $0.00
+2025-08-05 19:56:34,470 - V10ScalpingBot - INFO - Active Trades: 0
+2025-08-05 19:56:34,470 - V10ScalpingBot - INFO - Signals Generated: 0
+2025-08-05 19:56:34,470 - V10ScalpingBot - INFO - Current RSI: 50.00
+2025-08-05 19:56:34,470 - V10ScalpingBot - INFO - Risk Status: ACTIVE
+2025-08-05 19:56:34,470 - V10ScalpingBot - INFO - 🧠 Learning: Building (0 trades analyzed)
+2025-08-05 19:56:34,470 - V10ScalpingBot - INFO - 🎓 Live Trading Readiness: 0.0%
+2025-08-05 19:56:34,470 - V10ScalpingBot - INFO - Web Dashboard: http://127.0.0.1:8000
+2025-08-05 19:56:34,470 - V10ScalpingBot - INFO - ===================
+2025-08-05 19:57:02,277 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:57:12,279 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:57:22,281 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:57:32,283 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:57:42,286 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:57:52,289 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:58:02,291 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:58:12,294 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:58:22,295 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:58:32,298 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:58:42,304 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:58:52,306 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:59:02,308 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:59:12,309 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:59:22,312 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:59:32,317 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:59:42,319 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 19:59:52,321 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:00:02,323 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:00:12,325 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:00:22,327 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:00:32,329 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:00:42,330 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:00:52,332 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:01:02,335 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:01:12,337 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:01:22,339 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:01:32,341 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:01:42,343 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:01:44,724 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:01:44,724 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:01:44,724 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:01:52,345 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:01:55,726 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:01:55,727 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:01:55,727 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:02:02,347 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:02:06,730 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:02:06,730 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:02:06,730 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:02:12,350 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:02:17,733 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:02:17,733 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:02:17,733 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:02:22,353 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:02:28,736 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:02:28,736 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:02:28,736 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:02:32,355 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:02:39,739 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:02:39,739 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:02:39,739 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:02:42,357 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:02:50,742 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:02:50,742 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:02:50,742 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:02:52,361 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:03:01,744 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:03:01,744 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:03:01,744 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:03:02,362 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:03:12,364 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:03:12,746 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:03:12,746 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:03:12,747 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:03:22,366 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:03:23,750 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:03:23,750 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:03:23,750 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:03:32,367 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:03:34,753 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:03:34,753 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:03:34,753 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:03:42,371 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:03:45,757 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:03:45,757 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:03:45,757 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:03:52,374 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:03:56,759 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:03:56,759 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:03:56,759 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:04:02,378 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:04:07,762 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:04:07,762 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:04:07,762 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:04:12,381 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:04:18,764 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:04:18,764 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:04:18,764 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:04:22,383 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:04:29,767 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:04:29,767 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:04:29,767 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:04:32,385 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:04:40,770 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:04:40,770 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:04:40,770 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:04:42,386 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:04:51,773 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:04:51,773 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:04:51,773 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:04:52,388 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:05:02,390 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:05:02,775 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:05:02,775 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:05:02,775 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:05:12,391 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:05:13,778 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:05:13,778 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:05:13,779 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:05:22,392 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:05:24,780 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:05:24,780 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:05:24,780 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:05:32,394 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:05:35,783 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:05:35,783 - V10ScalpingBot - INFO - Runtime: 0.1 hours
+2025-08-05 20:05:35,783 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:05:42,395 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:05:46,785 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:05:46,786 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:05:46,786 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:05:52,397 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:05:57,788 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:05:57,788 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:05:57,788 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:06:02,399 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:06:08,790 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:06:08,790 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:06:08,790 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:06:12,400 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:06:19,792 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:06:19,792 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:06:19,792 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:06:22,403 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:06:30,794 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:06:30,794 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:06:30,794 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:06:32,405 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:06:41,797 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:06:41,797 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:06:41,797 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:06:42,407 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:06:52,408 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:06:52,798 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:06:52,798 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:06:52,798 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:07:02,410 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:07:03,801 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:07:03,801 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:07:03,801 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:07:12,412 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:07:14,805 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:07:14,805 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:07:14,805 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:07:22,414 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:07:25,807 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:07:25,807 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:07:25,807 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:07:32,415 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:07:36,810 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:07:36,811 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:07:36,811 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:07:42,417 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:07:47,813 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:07:47,813 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:07:47,813 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:07:52,419 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:07:58,816 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:07:58,816 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:07:58,816 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:08:02,420 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:08:09,819 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:08:09,819 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:08:09,819 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:08:12,422 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:08:20,821 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:08:20,821 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:08:20,821 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:08:22,424 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:08:31,824 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:08:31,824 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:08:31,824 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:08:32,425 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:08:42,427 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:08:42,826 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:08:42,826 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:08:42,826 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:08:52,433 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:08:53,828 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:08:53,828 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:08:53,828 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:09:02,435 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:09:04,830 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:09:04,830 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:09:04,830 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:09:12,441 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:09:15,834 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:09:15,834 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:09:15,834 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:09:22,443 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:09:26,837 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:09:26,837 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:09:26,837 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:09:32,445 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:09:37,839 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:09:37,839 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:09:37,839 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:09:42,446 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:09:48,842 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:09:48,842 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:09:48,842 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:09:52,448 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:09:59,844 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:09:59,845 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:09:59,845 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:10:02,454 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:10:10,848 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:10:10,848 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:10:10,848 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:10:12,457 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:10:21,850 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:10:21,850 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:10:21,850 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:10:22,458 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:10:32,460 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:10:32,852 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:10:32,852 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:10:32,852 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:10:42,467 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:10:43,855 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:10:43,855 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:10:43,855 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:10:52,472 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:10:54,857 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:10:54,857 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:10:54,857 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:11:02,475 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:11:05,860 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:11:05,860 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:11:05,860 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:11:12,476 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:11:16,862 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:11:16,862 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:11:16,862 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:11:22,477 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:11:27,864 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:11:27,864 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:11:27,864 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
+2025-08-05 20:11:32,478 - V10ScalpingBot - WARNING - Could not get current balance for trade execution
+2025-08-05 20:11:33,490 - V10ScalpingBot - INFO - Received signal 2, initiating shutdown...
+2025-08-05 20:11:33,587 - V10ScalpingBot - INFO - Shutting down V10 Scalping Bot...
+2025-08-05 20:11:33,587 - V10ScalpingBot - INFO - Web server monitoring stopped
+2025-08-05 20:11:38,228 - V10ScalpingBot - INFO - Received signal 2, initiating shutdown...
+2025-08-05 20:11:38,867 - V10ScalpingBot - INFO - === STATUS REPORT ===
+2025-08-05 20:11:38,867 - V10ScalpingBot - INFO - Runtime: 0.2 hours
+2025-08-05 20:11:38,867 - V10ScalpingBot - ERROR - Error generating status report: unsupported format string passed to NoneType.__format__
