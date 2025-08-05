@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V10 Scalping Bot Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js" rel="stylesheet">
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-robot me-2"></i>V10 Scalping Bot Dashboard
+            </a>
+            <div class="navbar-nav ms-auto">
+                <div class="nav-item">
+                    <span class="nav-link">
+                        <i id="connection-status" class="fas fa-circle text-danger me-2"></i>
+                        <span id="connection-text">Disconnected</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-3">
+        <!-- Status Cards Row -->
+        <div class="row mb-4">
+            <!-- Bot Status Card -->
+            <div class="col-xl-3 col-md-6 mb-3">
+                <div class="card bg-secondary text-light">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="card-title text-uppercase text-muted mb-2">Bot Status</h6>
+                                <h4 class="mb-0" id="bot-status">Starting...</h4>
+                                <small class="text-muted" id="bot-runtime">Runtime: 0s</small>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-power-off fa-2x text-info"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Balance Card -->
+            <div class="col-xl-3 col-md-6 mb-3">
+                <div class="card bg-secondary text-light">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="card-title text-uppercase text-muted mb-2">Balance</h6>
+                                <h4 class="mb-0" id="current-balance">$0.00</h4>
+                                <small class="text-muted" id="balance-change">ROI: 0.00%</small>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-success"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Win Rate Card -->
+            <div class="col-xl-3 col-md-6 mb-3">
+                <div class="card bg-secondary text-light">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="card-title text-uppercase text-muted mb-2">Win Rate</h6>
+                                <h4 class="mb-0" id="win-rate">0.0%</h4>
+                                <small class="text-muted" id="total-trades">0 trades</small>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-chart-line fa-2x text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RSI Card -->
+            <div class="col-xl-3 col-md-6 mb-3">
+                <div class="card bg-secondary text-light">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="card-title text-uppercase text-muted mb-2">Current RSI</h6>
+                                <h4 class="mb-0" id="current-rsi">50.0</h4>
+                                <small class="text-muted" id="rsi-signal">Neutral</small>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-tachometer-alt fa-2x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="row mb-4">
+            <!-- Balance Chart -->
+            <div class="col-xl-8 col-lg-7">
+                <div class="card bg-secondary">
+                    <div class="card-header bg-primary">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-chart-area me-2"></i>Balance History
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="balanceChart" height="100"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RSI Chart -->
+            <div class="col-xl-4 col-lg-5">
+                <div class="card bg-secondary">
+                    <div class="card-header bg-primary">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-wave-square me-2"></i>RSI Indicator
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="rsiChart" height="150"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Tables Row -->
+        <div class="row mb-4">
+            <!-- Active Trades -->
+            <div class="col-xl-6 col-lg-6">
+                <div class="card bg-secondary">
+                    <div class="card-header bg-primary d-flex justify-content-between align-items-center">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-play-circle me-2"></i>Active Trades
+                        </h6>
+                        <span class="badge bg-info" id="active-trades-count">0</span>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-dark table-striped mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Type</th>
+                                        <th>Stake</th>
+                                        <th>Duration</th>
+                                        <th>Entry</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="active-trades-table">
+                                    <tr>
+                                        <td colspan="6" class="text-center text-muted">No active trades</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Signals -->
+            <div class="col-xl-6 col-lg-6">
+                <div class="card bg-secondary">
+                    <div class="card-header bg-primary d-flex justify-content-between align-items-center">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-signal me-2"></i>Recent Signals
+                        </h6>
+                        <span class="badge bg-warning" id="signals-count">0</span>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-dark table-striped mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Type</th>
+                                        <th>Confidence</th>
+                                        <th>Strategy</th>
+                                        <th>RSI</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="signals-table">
+                                    <tr>
+                                        <td colspan="5" class="text-center text-muted">No signals yet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk Management & Controls Row -->
+        <div class="row mb-4">
+            <!-- Risk Status -->
+            <div class="col-xl-8 col-lg-7">
+                <div class="card bg-secondary">
+                    <div class="card-header bg-primary">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-shield-alt me-2"></i>Risk Management Status
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Daily P&L</label>
+                                    <div class="progress">
+                                        <div id="daily-pnl-bar" class="progress-bar" role="progressbar"></div>
+                                    </div>
+                                    <small class="text-muted" id="daily-pnl-text">$0.00 / $1.50 limit</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Consecutive Losses</label>
+                                    <div class="progress">
+                                        <div id="consecutive-losses-bar" class="progress-bar bg-danger" role="progressbar"></div>
+                                    </div>
+                                    <small class="text-muted" id="consecutive-losses-text">0 / 5 limit</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Drawdown</label>
+                                    <div class="progress">
+                                        <div id="drawdown-bar" class="progress-bar bg-warning" role="progressbar"></div>
+                                    </div>
+                                    <small class="text-muted" id="drawdown-text">0.0% / 40% limit</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Hourly Trades</label>
+                                    <div class="progress">
+                                        <div id="hourly-trades-bar" class="progress-bar bg-info" role="progressbar"></div>
+                                    </div>
+                                    <small class="text-muted" id="hourly-trades-text">0 / 15 limit</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bot Controls -->
+            <div class="col-xl-4 col-lg-5">
+                <div class="card bg-secondary">
+                    <div class="card-header bg-primary">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-cogs me-2"></i>Bot Controls
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-warning" id="pause-btn" onclick="controlBot('pause')">
+                                <i class="fas fa-pause me-2"></i>Pause Trading
+                            </button>
+                            <button class="btn btn-success" id="resume-btn" onclick="controlBot('resume')">
+                                <i class="fas fa-play me-2"></i>Resume Trading
+                            </button>
+                            <button class="btn btn-danger" id="stop-btn" onclick="controlBot('stop')">
+                                <i class="fas fa-stop me-2"></i>Stop Bot
+                            </button>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <div class="mb-2">
+                                <strong>Trading Status:</strong>
+                                <span id="trading-status" class="badge bg-success">Active</span>
+                            </div>
+                            <div class="mb-2">
+                                <strong>Risk Level:</strong>
+                                <span id="risk-level" class="badge bg-info">Low</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Trades -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card bg-secondary">
+                    <div class="card-header bg-primary">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-history me-2"></i>Recent Trades History
+                        </h6>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-dark table-striped mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>ID</th>
+                                        <th>Type</th>
+                                        <th>Stake</th>
+                                        <th>Duration</th>
+                                        <th>Entry Price</th>
+                                        <th>Exit Price</th>
+                                        <th>P&L</th>
+                                        <th>Status</th>
+                                        <th>Strategy</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-trades-table">
+                                    <tr>
+                                        <td colspan="10" class="text-center text-muted">No completed trades yet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
