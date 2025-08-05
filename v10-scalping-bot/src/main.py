@@ -8,6 +8,7 @@ import asyncio
 import logging
 import signal
 import sys
+import threading
 from typing import Optional
 from datetime import datetime, timezone
 
@@ -23,7 +24,7 @@ from src.performance_tracker import PerformanceTracker
 class V10ScalpingBot:
     """Main V10 Scalping Bot Application"""
     
-    def __init__(self):
+    def __init__(self, enable_web_server: bool = True):
         # Load configuration
         self.config = Config.load()
         
@@ -47,6 +48,11 @@ class V10ScalpingBot:
         self.risk_manager: Optional[RiskManager] = None
         self.trade_executor: Optional[TradeExecutor] = None
         self.performance_tracker: Optional[PerformanceTracker] = None
+        
+        # Web server integration
+        self.enable_web_server = enable_web_server
+        self.web_server = None
+        self.web_server_thread = None
         
         # Application state
         self.running = False
@@ -96,11 +102,20 @@ class V10ScalpingBot:
                 # Initialize performance tracker
                 self.performance_tracker = PerformanceTracker(initial_balance)
                 
+                # Initialize risk manager with initial balance
+                self.risk_manager.initial_balance = initial_balance
+                self.risk_manager.current_balance = initial_balance
+                self.risk_manager.peak_balance = initial_balance
+                
                 # Set up market data subscription
                 await self.websocket_client.subscribe_ticks(
                     self.config.trading.symbol,
                     self._handle_tick_data
                 )
+                
+                # Start web server if enabled
+                if self.enable_web_server:
+                    await self._start_web_server()
                 
                 self.logger.info(f"Bot initialized successfully with balance: ${initial_balance:.2f}")
                 return True
@@ -111,6 +126,24 @@ class V10ScalpingBot:
         except Exception as e:
             self.logger.error(f"Error during initialization: {e}")
             return False
+    
+    async def _start_web_server(self):
+        """Start the web server for dashboard"""
+        try:
+            from src.web_server import start_web_server
+            
+            # Start web server in a separate thread
+            self.web_server, self.web_server_thread = start_web_server(
+                bot=self,
+                host="127.0.0.1",
+                port=8000
+            )
+            
+            self.logger.info("Web dashboard started at http://127.0.0.1:8000")
+            
+        except Exception as e:
+            self.logger.error(f"Failed to start web server: {e}")
+            self.logger.info("Continuing without web dashboard...")
     
     async def _handle_tick_data(self, tick_data: dict):
         """Handle incoming tick data"""
@@ -225,6 +258,8 @@ class V10ScalpingBot:
                 self.logger.info(f"Signals Generated: {signal_stats['total_signals']}")
                 self.logger.info(f"Current RSI: {market_summary['rsi']:.2f}")
                 self.logger.info(f"Risk Status: {risk_summary['trading_status']}")
+                if self.enable_web_server:
+                    self.logger.info("Web Dashboard: http://127.0.0.1:8000")
                 self.logger.info("===================")
                 
                 self.last_status_report = current_time
@@ -267,6 +302,11 @@ class V10ScalpingBot:
         self.logger.info("Shutting down V10 Scalping Bot...")
         
         try:
+            # Stop web server
+            if self.web_server:
+                await self.web_server.stop_monitoring()
+                self.logger.info("Web server monitoring stopped")
+            
             # Stop trading executor
             if self.trade_executor:
                 await self.trade_executor.shutdown()
@@ -319,6 +359,9 @@ class V10ScalpingBot:
                         f"${metrics['total_pnl']:.2f} P&L"
                     )
             
+            if self.enable_web_server:
+                self.logger.info("Web Dashboard was available at: http://127.0.0.1:8000")
+            
             self.logger.info("=============================")
             
         except Exception as e:
@@ -341,14 +384,25 @@ class V10ScalpingBot:
             'runtime_seconds': get_current_timestamp() - self.startup_time,
             'websocket_connected': self.websocket_client.is_connected() if self.websocket_client else False,
             'active_trades': len(self.trade_executor.get_active_trades()) if self.trade_executor else 0,
-            'total_trades': len(self.performance_tracker.trades) if self.performance_tracker else 0
+            'total_trades': len(self.performance_tracker.trades) if self.performance_tracker else 0,
+            'web_server_enabled': self.enable_web_server,
+            'web_dashboard_url': 'http://127.0.0.1:8000' if self.enable_web_server else None
         }
 
 async def main():
     """Main entry point"""
     try:
+        # Check if web server should be enabled (default: yes)
+        enable_web = '--no-web' not in sys.argv
+        
+        if enable_web:
+            print("🌐 Starting V10 Scalping Bot with Web Dashboard...")
+            print("📊 Dashboard will be available at: http://127.0.0.1:8000")
+        else:
+            print("🤖 Starting V10 Scalping Bot (headless mode)...")
+        
         # Create and run bot
-        bot = V10ScalpingBot()
+        bot = V10ScalpingBot(enable_web_server=enable_web)
         success = await bot.run()
         
         if success:

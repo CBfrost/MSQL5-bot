@@ -95,9 +95,64 @@ cp .env.example .env
 ```
 
 5. **Run the bot**
+
+#### 🌐 With Web Dashboard (Recommended)
 ```bash
-python run.py
+# Run with real-time web dashboard
+python run_with_dashboard.py
+
+# Dashboard will be available at: http://127.0.0.1:8000
+# Browser will open automatically
 ```
+
+#### 🤖 Headless Mode
+```bash
+# Production run (no web interface)
+python run.py
+
+# Direct run
+python -m src.main
+
+# Disable web server
+python -m src.main --no-web
+```
+
+## 🌐 Web Dashboard Features
+
+The bot includes a comprehensive real-time web dashboard for monitoring and control:
+
+### 📊 Real-Time Monitoring
+- **Live Balance Tracking**: Current balance, ROI, and P&L
+- **Performance Metrics**: Win rate, total trades, profit factor
+- **RSI Indicator**: Live RSI values with overbought/oversold signals
+- **Active Trades**: Real-time monitoring of open positions
+- **Market Data**: Current tick prices and volatility
+
+### 📈 Data Visualization
+- **Balance Chart**: Historical balance progression
+- **RSI Chart**: Live RSI indicator with signal zones
+- **Trade History**: Complete trade log with results
+- **Signal History**: Recent signals with confidence scores
+
+### 🛡️ Risk Management Display
+- **Daily P&L Progress**: Current vs. limit ($1.50)
+- **Consecutive Losses**: Current streak vs. limit (5)
+- **Drawdown Monitor**: Current vs. maximum (40%)
+- **Trade Frequency**: Hourly trades vs. limit (15)
+
+### 🎮 Bot Controls
+- **Pause/Resume**: Temporarily stop trading
+- **Emergency Stop**: Immediate bot shutdown
+- **Status Monitoring**: Real-time bot health
+- **Connection Status**: WebSocket and API connectivity
+
+### 📱 Responsive Design
+- Works on desktop, tablet, and mobile
+- Dark theme optimized for trading
+- Real-time updates via WebSocket
+- Professional trading interface
+
+**Access Dashboard**: http://127.0.0.1:8000 (when bot is running)
 
 ## ⚙️ Configuration
 
