@@ -246,7 +246,7 @@ class DerivWebSocketClient:
                 }
             }
             
-            response = await self.send_request(request, timeout=15.0)
+            response = await self.send_request(request, timeout=20.0)
             
             if response and not response.get('error'):
                 self.logger.info(f"Order placed successfully: {contract_type} on {symbol}")

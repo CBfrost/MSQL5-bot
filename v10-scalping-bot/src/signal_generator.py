@@ -80,7 +80,7 @@ class ScalpingSignalGenerator:
         # Performance tracking
         self.signals_generated = 0
         self.last_signal_time = 0.0
-        self.min_signal_interval = 3.0  # Minimum seconds between signals
+        self.min_signal_interval = 10.0  # Minimum seconds between signals (reduced for demo)
         
     def generate_signal(self, market_data: MarketDataEngine) -> Optional[TradingSignal]:
         """Generate trading signal based on current market conditions"""
