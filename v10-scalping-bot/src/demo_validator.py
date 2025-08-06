@@ -230,7 +230,7 @@ class DemoTradingValidator:
             # Calculate overall score
             criteria_met = sum(graduation_result["criteria_met"].values())
             total_criteria = len(self.demo_requirements)
-            graduation_result["overall_score"] = criteria_met / total_criteria
+            graduation_result["overall_score"] = criteria_met / total_criteria if total_criteria > 0 else 0.0
             
             # Determine if ready for live trading
             graduation_result["ready_for_live"] = criteria_met == total_criteria

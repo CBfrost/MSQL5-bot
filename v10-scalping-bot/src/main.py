@@ -324,7 +324,8 @@ class V10ScalpingBot:
                 # Log comprehensive status
                 self.logger.info("=== STATUS REPORT ===")
                 self.logger.info(f"Runtime: {(current_time - self.startup_time) / 3600:.1f} hours")
-                self.logger.info(f"Balance: ${current_balance:.2f} (ROI: {performance_summary['balance_info']['roi_percent']:.2f}%)")
+                roi_percent = performance_summary['balance_info']['roi_percent'] or 0.0
+                self.logger.info(f"Balance: ${current_balance:.2f} (ROI: {roi_percent:.2f}%)")
                 self.logger.info(f"Total Trades: {performance_summary['performance_metrics']['total_trades']}")
                 self.logger.info(f"Win Rate: {performance_summary['performance_metrics']['win_rate']:.1f}%")
                 self.logger.info(f"Total P&L: ${performance_summary['performance_metrics']['total_pnl']:.2f}")
@@ -344,7 +345,7 @@ class V10ScalpingBot:
                     self.logger.info(f"🏆 Best Strategy: {best_strategy['name']} ({best_strategy['win_rate']:.1f}% win rate)")
                 
                 # Graduation status
-                self.logger.info(f"🎓 Live Trading Readiness: {graduation_status['overall_score']:.1%}")
+                self.logger.info(f"🎓 Live Trading Readiness: {graduation_status.get('overall_score', 0):.1%}")
                 
                 if self.enable_web_server:
                     self.logger.info("Web Dashboard: http://127.0.0.1:8000")
@@ -430,7 +431,8 @@ class V10ScalpingBot:
             self.logger.info(f"Initial Balance: ${summary['balance_info']['initial_balance']:.2f}")
             self.logger.info(f"Final Balance: ${summary['balance_info']['current_balance']:.2f}")
             self.logger.info(f"Total Return: ${summary['balance_info']['total_return']:.2f}")
-            self.logger.info(f"ROI: {summary['balance_info']['roi_percent']:.2f}%")
+            roi_percent = summary['balance_info']['roi_percent'] or 0.0
+            self.logger.info(f"ROI: {roi_percent:.2f}%")
             self.logger.info(f"Total Trades: {summary['performance_metrics']['total_trades']}")
             self.logger.info(f"Win Rate: {summary['performance_metrics']['win_rate']:.1f}%")
             self.logger.info(f"Profit Factor: {summary['performance_metrics']['profit_factor']:.2f}")

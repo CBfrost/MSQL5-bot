@@ -123,7 +123,7 @@ def show_learning_progress():
         
         # Check graduation status
         graduation = demo_validator.should_graduate_to_live_trading()
-        print(f"   Live Trading Readiness: {graduation['confidence_score']:.1%}")
+        print(f"   Live Trading Readiness: {graduation.get('confidence_score', graduation.get('overall_score', 0)):.1%}")
         
         if graduation['ready']:
             print("🎉 READY FOR LIVE TRADING!")
@@ -245,7 +245,7 @@ def main_demo_learning():
             graduation = demo_validator.check_graduation_criteria(adaptive_summary)
             
             print("\n🎓 FINAL GRADUATION ASSESSMENT:")
-            print(f"   Overall Readiness: {graduation['overall_score']:.1%}")
+            print(f"   Overall Readiness: {graduation.get('overall_score', 0):.1%}")
             
             if graduation['ready_for_live']:
                 print("🎉 CONGRATULATIONS! Ready for live trading!")
