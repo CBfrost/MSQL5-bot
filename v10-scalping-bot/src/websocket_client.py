@@ -263,16 +263,23 @@ class DerivWebSocketClient:
     async def get_balance(self) -> Optional[float]:
         """Get current account balance"""
         try:
-            response = await self.send_request({"balance": 1})
+            response = await self.send_request({"balance": 1}, timeout=10.0)
             
             if response and not response.get('error'):
                 balance_data = response.get('balance', {})
                 return float(balance_data.get('balance', 0))
             else:
                 error_msg = response.get('error', {}).get('message', 'Unknown error') if response else 'No response'
-                self.logger.error(f"Failed to get balance: {error_msg}")
+                # Only log as warning for timeout, not error (to reduce spam)
+                if 'timeout' in error_msg.lower() or response is None:
+                    self.logger.debug(f"Balance request timeout: {error_msg}")
+                else:
+                    self.logger.error(f"Failed to get balance: {error_msg}")
                 return None
                 
+        except asyncio.TimeoutError:
+            self.logger.debug("Balance request timed out")
+            return None
         except Exception as e:
             self.logger.error(f"Error getting balance: {e}")
             return None

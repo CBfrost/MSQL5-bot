@@ -597,7 +597,7 @@ class AdaptiveBacktester:
             # Calculate overall readiness
             criteria_met = sum(results["criteria_met"].values())
             total_criteria = len(graduation_criteria)
-            results["confidence_score"] = criteria_met / total_criteria
+            results["confidence_score"] = criteria_met / total_criteria if total_criteria > 0 else 0.0
             results["ready"] = criteria_met == total_criteria
             
             # Generate recommendations
