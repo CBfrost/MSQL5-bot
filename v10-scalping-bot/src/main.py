@@ -70,6 +70,8 @@ class V10ScalpingBot:
         self.last_balance_check = 0.0
         self.last_status_report = 0.0
         self.status_report_interval = 300  # 5 minutes
+        self.cached_balance = None
+        self.balance_cache_timeout = 30  # Cache balance for 30 seconds
         
         # Setup signal handlers
         self._setup_signal_handlers()
@@ -205,8 +207,8 @@ class V10ScalpingBot:
                     
                     # Only proceed if recommendation is positive
                     if recommendation['action'] == 'proceed' and recommendation['confidence'] > 0.4:
-                        # Get current balance
-                        current_balance = await self.websocket_client.get_balance()
+                        # Get current balance (cached to reduce API calls)
+                        current_balance = await self._get_cached_balance()
                         if current_balance is None:
                             self.logger.warning("Could not get current balance for trade execution")
                             return
@@ -300,7 +302,9 @@ class V10ScalpingBot:
         if current_time - self.last_status_report > self.status_report_interval:
             try:
                 # Get current balance
-                current_balance = await self.websocket_client.get_balance()
+                current_balance = await self._get_cached_balance()
+                if current_balance is None:
+                    current_balance = 0.0
                 
                 # Get performance summary
                 performance_summary = self.performance_tracker.get_performance_summary()
@@ -327,12 +331,17 @@ class V10ScalpingBot:
                 roi_percent = performance_summary['balance_info']['roi_percent'] or 0.0
                 self.logger.info(f"Balance: ${current_balance:.2f} (ROI: {roi_percent:.2f}%)")
                 self.logger.info(f"Total Trades: {performance_summary['performance_metrics']['total_trades']}")
-                self.logger.info(f"Win Rate: {performance_summary['performance_metrics']['win_rate']:.1f}%")
-                self.logger.info(f"Total P&L: ${performance_summary['performance_metrics']['total_pnl']:.2f}")
+                win_rate = performance_summary['performance_metrics']['win_rate'] or 0.0
+                self.logger.info(f"Win Rate: {win_rate:.1f}%")
+                total_pnl = performance_summary['performance_metrics']['total_pnl'] or 0.0
+                self.logger.info(f"Total P&L: ${total_pnl:.2f}")
                 self.logger.info(f"Active Trades: {len(self.trade_executor.get_active_trades())}")
-                self.logger.info(f"Signals Generated: {signal_stats['total_signals']}")
-                self.logger.info(f"Current RSI: {market_summary['rsi']:.2f}")
-                self.logger.info(f"Risk Status: {risk_summary['trading_status']}")
+                total_signals = signal_stats.get('total_signals', 0) if signal_stats else 0
+                self.logger.info(f"Signals Generated: {total_signals}")
+                current_rsi = market_summary.get('rsi', 50.0) if market_summary else 50.0
+                self.logger.info(f"Current RSI: {current_rsi:.2f}")
+                trading_status = risk_summary.get('trading_status', 'UNKNOWN') if risk_summary else 'UNKNOWN'
+                self.logger.info(f"Risk Status: {trading_status}")
                 
                 # Adaptive learning status
                 learning_progress = adaptive_summary.get('learning_progress', {})
@@ -456,6 +465,23 @@ class V10ScalpingBot:
             
         except Exception as e:
             self.logger.error(f"Error generating final summary: {e}")
+    
+    async def _get_cached_balance(self) -> Optional[float]:
+        """Get balance with caching to reduce API calls"""
+        current_time = get_current_timestamp()
+        
+        # Return cached balance if it's still valid
+        if (self.cached_balance is not None and 
+            current_time - self.last_balance_check < self.balance_cache_timeout):
+            return self.cached_balance
+        
+        # Get fresh balance
+        balance = await self.websocket_client.get_balance()
+        if balance is not None:
+            self.cached_balance = balance
+            self.last_balance_check = current_time
+        
+        return balance
     
     def _setup_signal_handlers(self):
         """Setup signal handlers for graceful shutdown"""
